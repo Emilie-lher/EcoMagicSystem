@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3bhyuklidg8l"]
+[gd_scene load_steps=8 format=3 uid="uid://c3bhyuklidg8l"]
 
 [ext_resource type="Script" uid="uid://0mr8pw82uk5q" path="res://env.gd" id="1_pjt7p"]
 [ext_resource type="PackedScene" uid="uid://c46yd04jwgh78" path="res://beez.tscn" id="2_pjt7p"]
 [ext_resource type="PackedScene" uid="uid://nnh4174mvwwm" path="res://target.tscn" id="3_5p0be"]
+[ext_resource type="Script" uid="uid://ffsq2jlew6t8" path="res://target.gd" id="4_521ie"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_521ie"]
 albedo_color = Color(0, 0.31766206, 0.1158321, 1)
@@ -17,11 +18,10 @@ size = Vector3(25, 0.5, 25)
 [node name="Beezs" type="Node3D"]
 script = ExtResource("1_pjt7p")
 
-[node name="Beez" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_pjt7p")]
+[node name="Beez" parent="." instance=ExtResource("2_pjt7p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07313585, 0)
 axis_lock_angular_x = true
 axis_lock_angular_z = true
-target = NodePath("../target")
 
 [node name="Sol" type="StaticBody3D" parent="."]
 
@@ -32,7 +32,7 @@ mesh = SubResource("PlaneMesh_yofma")
 shape = SubResource("BoxShape3D_x1l78")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.9902389, 0, 0.13938047, 0, 1, 0, -0.13938047, 0, -0.9902389, 0, 3.9182525, -11.311444)
+transform = Transform3D(-0.9902389, 0, 0.13938047, 0, 1, 0, -0.13938047, 0, -0.9902389, 0, 3.9182525, -14.819107)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.29389018, 0.95583916, 0, -0.95583916, 0.29389018, 0, 4.7345552, 10.783641)
@@ -42,3 +42,8 @@ transform = Transform3D(1, 0, 0, 0, 0.090406686, 0.9959049, 0, -0.9959049, 0.090
 
 [node name="target" parent="." instance=ExtResource("3_5p0be")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1097217, 0.9610481, -4.3799744)
+script = ExtResource("4_521ie")
+
+[node name="target2" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1097217, 0.9610481, 4.838338)
+script = ExtResource("4_521ie")

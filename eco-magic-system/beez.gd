@@ -1,11 +1,16 @@
 extends RigidBody3D
 
 # Target can be a Node3D (assign in inspector) or a NodePath
-@export var target: Node3D	#Contient la target séléectionné dans la scène
+var target: Node3D
 @export var speed: float = 7.0            # vitesse  (m/s)
+var possible_targets: Array[Node]
 
 #Called every time
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	possible_targets = get_tree().get_nodes_in_group("target")
+	# On assigne une target aléatoirement
+	if target == null:
+		change_target()
 	var fz = 5*(randf())
 	apply_central_force(Vector3(fz,0.1,fz))
 	
@@ -17,10 +22,10 @@ func _process(delta: float) -> void:
 		position.y = 0.1
 		
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	
 	var my_pos: Vector3 = state.transform.origin
 	var target_pos: Vector3
 	#Si l'abeille a bien une cible
+	print(target)
 	if target:
 		target_pos = target.global_transform.origin
 	else:
@@ -31,13 +36,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	look_at(target_pos)
 
 	#Ralentissement de l'abeille
-	if to_target.z < 0.5 && to_target.x < 0.5:
+	if to_target.z <0.04 && to_target.x < 0.04:
 		# On est proche de la target
 		state.linear_velocity = Vector3.ZERO
-		state.angular_velocity = Vector3.ZERO  
+		state.angular_velocity = Vector3.ZERO
 		axis_lock_angular_y = true
 		axis_lock_angular_x = true
-		return
+		change_target()
 	
 	# direction vers la cible
 	var direction: Vector3 = to_target / distance
@@ -46,4 +51,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# on la multiplie par un float 
 	state.linear_velocity = desired_velocity.normalized() * speed
 	
-	
+func change_target():
+	if possible_targets.size() > 0:
+		target = possible_targets.pick_random()
+	else:
+		print("possible_targets vide")
