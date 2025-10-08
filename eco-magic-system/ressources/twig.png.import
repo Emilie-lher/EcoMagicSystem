@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u8tsnalin2uo"
-path.s3tc="res://.godot/imported/Branches3.png-14c48822a39dc5aefe639a7468b40462.s3tc.ctex"
+uid="uid://bssimbndlsv0i"
+path.s3tc="res://.godot/imported/twig.png-a301533146be6d657d79b1e6efd403b5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://ressources/Branches3.png"
-dest_files=["res://.godot/imported/Branches3.png-14c48822a39dc5aefe639a7468b40462.s3tc.ctex"]
+source_file="res://ressources/twig.png"
+dest_files=["res://.godot/imported/twig.png-a301533146be6d657d79b1e6efd403b5.s3tc.ctex"]
 
 [params]
 
