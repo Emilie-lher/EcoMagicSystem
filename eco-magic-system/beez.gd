@@ -2,16 +2,18 @@ extends RigidBody3D
 
 # Target can be a Node3D (assign in inspector) or a NodePath
 var target: Node3D
-@export var speed: float = 7.0            # vitesse  (m/s)
+@export var speed: float = 4.0           # vitesse  (m/s)
 var possible_targets: Array[Node]
 
 #Called every time
 func _process(_delta: float) -> void:
-	possible_targets = get_tree().get_nodes_in_group("target")
+	add_to_group("abeilles")
+	possible_targets = get_tree().get_nodes_in_group("fleurs")
 	# On assigne une target aléatoirement
 	if target == null:
 		change_target()
 	var fz = 5*(randf())
+	#Stabilise l'abeille
 	apply_central_force(Vector3(fz,0.1,fz))
 	
 	if position.z > 25:
@@ -34,6 +36,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Donne la longueur du vecteur entre la position de l'abeille et la position de la target
 	var distance: float = to_target.length()
 	look_at(target_pos)
+
+	#Vérifie que seule cette abeille aie pour cible cette fleur.
+	var other_bees = get_tree().get_nodes_in_group("abeilles")
+	for bee in other_bees:
+		if bee != self and bee.target == target:
+			# Une autre abeille a déjà cette cible, on change la cible de l'autre abeille
+			bee.change_target()
 
 	#Ralentissement de l'abeille
 	if to_target.z <0.04 && to_target.x < 0.04:

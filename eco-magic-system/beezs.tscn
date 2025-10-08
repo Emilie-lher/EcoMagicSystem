@@ -19,9 +19,10 @@ size = Vector3(25, 0.5, 25)
 script = ExtResource("1_pjt7p")
 
 [node name="Beez" parent="." instance=ExtResource("2_pjt7p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07313585, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2450233, 0.07313585, 2.142765)
 axis_lock_angular_x = true
 axis_lock_angular_z = true
+speed = 4.0
 
 [node name="Sol" type="StaticBody3D" parent="."]
 
@@ -46,4 +47,22 @@ script = ExtResource("4_521ie")
 
 [node name="target2" parent="." instance=ExtResource("3_5p0be")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1097217, 0.9610481, 4.838338)
+script = ExtResource("4_521ie")
+
+[node name="target3" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3723063, 0.9610481, 4.838338)
+script = ExtResource("4_521ie")
+
+[node name="target4" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.032446, 0.9610481, -3.0717592)
+script = ExtResource("4_521ie")
+
+[node name="Beez2" parent="." instance=ExtResource("2_pjt7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07313585, 0)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+speed = 4.0
+
+[node name="target5" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1097217, 0.9610481, -6.3413076)
 script = ExtResource("4_521ie")
