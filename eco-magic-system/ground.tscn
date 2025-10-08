@@ -3,9 +3,9 @@
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="1_tv015"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="2_wnojy"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="3_vkp31"]
-[ext_resource type="Material" path="res://ressources/trunk_mat.tres" id="4_d4pc4"]
-[ext_resource type="Material" path="res://ressources/twig_mat.tres" id="5_eprha"]
-[ext_resource type="Material" path="res://ressources/mat_leaf.tres" id="6_511ym"]
+[ext_resource type="Material" uid="uid://nnvdwvk0kja2" path="res://ressources/trunk_mat.tres" id="4_d4pc4"]
+[ext_resource type="Material" uid="uid://bj1chu0hqmsgt" path="res://ressources/twig_mat.tres" id="5_eprha"]
+[ext_resource type="Material" uid="uid://bmsy26x366jig" path="res://ressources/mat_leaf.tres" id="6_511ym"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_d4pc4"]
 size = Vector3(50, 0.03, 50)
