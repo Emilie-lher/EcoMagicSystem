@@ -26,6 +26,11 @@ var indexTabPistile = 0
 var couleur_jaune = Color(0.627, 0.737, 0.0)
 var couleur_verte = Color(0.0, 0.325, 0.0)
 
+#Condiiton pour changement de couleur 
+# si contact bodyentered avec abeille sur fleur
+#Alors pistile_doit_etre_vert = true
+
+
 func _ready():
 	# Appliquer la couleur au démarrage selon le boolean
 	appliquer_couleur_pistiles()
