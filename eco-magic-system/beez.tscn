@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://c46yd04jwgh78"]
+
+[ext_resource type="Script" uid="uid://dwu3qmnbt7vco" path="res://beez.gd" id="1_6ksu4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjt7p"]
+albedo_color = Color(0.73652637, 0.53866804, 0.2718121, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5p0be"]
+material = SubResource("StandardMaterial3D_pjt7p")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_521ie"]
+size = Vector3(0.80126953, 0.7099304, 1.0106583)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yofma"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmmx8"]
+albedo_color = Color(0.7372549, 0.5372549, 0.27058825, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x1l78"]
+material = SubResource("StandardMaterial3D_hmmx8")
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pssld"]
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5p0be"]
+albedo_color = Color(0.038397167, 0.038397167, 0.03839716, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqtt7"]
+material = SubResource("StandardMaterial3D_5p0be")
+
+[node name="Beez" type="RigidBody3D"]
+contact_monitor = true
+script = ExtResource("1_6ksu4")
+speed = null
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.75672555, -0.003374517)
+mesh = SubResource("BoxMesh_5p0be")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009765625, 0.80593514, -0.10848087)
+shape = SubResource("BoxShape3D_521ie")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.005761072, 0.77359164, -0.40651715)
+mesh = SubResource("BoxMesh_yofma")
+
+[node name="ArmLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0039385627, -0.09988751, 0.0026403763, 0.09992235, -0.0039399364, 0, 0.000104029146, 0.002638326, 0.09996514, 0.30807975, 0.7866546, 0.0009022951)
+mesh = SubResource("CylinderMesh_x1l78")
+
+[node name="ArmRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0039380784, 0.0998752, 0.003071286, 0.099922344, -0.0039399364, 9.8361675e-12, 0.00012100673, 0.0030689014, -0.09995282, -0.30481684, 0.77986693, 0.0009022951)
+mesh = SubResource("CylinderMesh_x1l78")
+skeleton = NodePath("../..")
+
+[node name="WingLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.018275013, 0.6997614, 0, -0.6997614, 0.018275013, 0, 0, 0, 0.7, 0.36890048, 0.8132874, 0.00876534)
+mesh = SubResource("CylinderMesh_pssld")
+
+[node name="WingRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.018257538, -0.69909227, -0.030606868, -0.69976145, 0.018275015, 0, 0.00079905847, 0.030596435, -0.6993306, -0.36309573, 0.8131275, 0.00876534)
+mesh = SubResource("CylinderMesh_pssld")
+skeleton = NodePath("../..")
+
+[node name="EyeLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.07391177, 0.77388746, -0.5817373)
+mesh = SubResource("BoxMesh_gqtt7")
+
+[node name="EyeRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.08252725, 0.7787175, -0.5832184)
+mesh = SubResource("BoxMesh_gqtt7")
+skeleton = NodePath("../..")

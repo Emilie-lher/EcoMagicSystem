@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3bhyuklidg8l"]
+
+[ext_resource type="Script" uid="uid://0mr8pw82uk5q" path="res://env.gd" id="1_pjt7p"]
+[ext_resource type="PackedScene" uid="uid://c46yd04jwgh78" path="res://beez.tscn" id="2_pjt7p"]
+[ext_resource type="PackedScene" uid="uid://nnh4174mvwwm" path="res://target.tscn" id="3_5p0be"]
+[ext_resource type="Script" uid="uid://ffsq2jlew6t8" path="res://target.gd" id="4_521ie"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_521ie"]
+albedo_color = Color(0, 0.31766206, 0.1158321, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yofma"]
+material = SubResource("StandardMaterial3D_521ie")
+size = Vector2(25, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1l78"]
+size = Vector3(25, 0.5, 25)
+
+[node name="Beezs" type="Node3D"]
+script = ExtResource("1_pjt7p")
+
+[node name="Beez" parent="." instance=ExtResource("2_pjt7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2450233, 0.07313585, 2.142765)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+speed = 4.0
+
+[node name="Sol" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sol"]
+mesh = SubResource("PlaneMesh_yofma")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sol"]
+shape = SubResource("BoxShape3D_x1l78")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.9902389, 0, 0.13938047, 0, 1, 0, -0.13938047, 0, -0.9902389, 0, 3.9182525, -14.819107)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.29389018, 0.95583916, 0, -0.95583916, 0.29389018, 0, 4.7345552, 10.783641)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.090406686, 0.9959049, 0, -0.9959049, 0.090406716, 2.3419409, 7.388586, -17.45063)
+
+[node name="target" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1097217, 0.9610481, -4.3799744)
+script = ExtResource("4_521ie")
+
+[node name="target2" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1097217, 0.9610481, 4.838338)
+script = ExtResource("4_521ie")
+
+[node name="target3" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3723063, 0.9610481, 4.838338)
+script = ExtResource("4_521ie")
+
+[node name="target4" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.032446, 0.9610481, -3.0717592)
+script = ExtResource("4_521ie")
+
+[node name="Beez2" parent="." instance=ExtResource("2_pjt7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07313585, 0)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+speed = 4.0
+
+[node name="target5" parent="." instance=ExtResource("3_5p0be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1097217, 0.9610481, -6.3413076)
+script = ExtResource("4_521ie")
