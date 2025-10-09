@@ -1,11 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://d2uephqc880yk"]
+[gd_scene load_steps=10 format=4 uid="uid://d2uephqc880yk"]
 
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="1_tv015"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="2_wnojy"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="3_vkp31"]
-[ext_resource type="Material" uid="uid://nnvdwvk0kja2" path="res://ressources/trunk_mat.tres" id="4_d4pc4"]
-[ext_resource type="Material" uid="uid://bj1chu0hqmsgt" path="res://ressources/twig_mat.tres" id="5_eprha"]
-[ext_resource type="Material" uid="uid://bmsy26x366jig" path="res://ressources/mat_leaf.tres" id="6_511ym"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_d4pc4"]
 size = Vector3(50, 0.03, 50)
@@ -97,38 +94,6 @@ sgt_tool_shape = {
 }
 metadata/_custom_type_script = "uid://2juaclm8gc1n"
 metadata/SimpleGrassTextured = "2.0.5"
-
-[node name="Tree3D" type="Tree3D" parent="Ground"]
-seed = 78556
-trunk_branch_length = 0.725
-trunk_length = 3.745
-twig_scale = 0.248
-material_trunk = ExtResource("4_d4pc4")
-material_twig = ExtResource("5_eprha")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.130092, 0, 0)
-
-[node name="Tree3D2" type="Tree3D" parent="Ground"]
-seed = 45237
-trunk_branch_length = 1.527
-material_trunk = ExtResource("4_d4pc4")
-material_twig = ExtResource("5_eprha")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4977674, 0, -11.156061)
-
-[node name="Tree3D3" type="Tree3D" parent="Ground"]
-seed = 45237
-trunk_branch_length = 1.527
-material_trunk = ExtResource("4_d4pc4")
-material_twig = ExtResource("5_eprha")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.97525, 0, 6.5865707)
-
-[node name="Tree3D4" type="Tree3D" parent="Ground"]
-seed = 5555
-trunk_branch_length = 0.773
-trunk_twist = 1.35
-trunk_length = 4.885
-material_trunk = ExtResource("4_d4pc4")
-material_twig = ExtResource("6_511ym")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2938123, 0, 16.325274)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Ground"]
 transform = Transform3D(0.9733593, 0, -0.22928534, 0, 1, 0, 0.22928534, 0, 0.9733593, 12.915806, 8.930224, 18.94785)
