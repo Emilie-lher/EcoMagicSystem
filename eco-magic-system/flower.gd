@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends StaticBody3D
 
 
 
@@ -26,16 +26,17 @@ var indexTabPistile = 0
 var couleur_jaune = Color(0.627, 0.737, 0.0)
 var couleur_verte = Color(0.0, 0.325, 0.0)
 
-#Condiiton pour changement de couleur 
-# si contact bodyentered avec abeille sur fleur
-#Alors pistile_doit_etre_vert = true
 
 
 func _ready():
 	# Appliquer la couleur au démarrage selon le boolean
+	$ZoneDetection.body_entered.connect(_detection_abeille)
+	pistile_doit_etre_vert = false
 	appliquer_couleur_pistiles()
-
+	
+	
 func _process(delta):
+	add_to_group("fleurs")
 	timer += delta
 	# Cas 1: Perte des pétales si une abeille a butiné la fleur les petales passe du jaune au vert et plus de pétales
 	
@@ -71,18 +72,16 @@ func _process(delta):
 			
 	
 
-
-
-#func appliquer_couleur_pistiles():
-	# Choisir la couleur selon le boolean
-	#var couleur = couleur_verte if pistile_doit_etre_vert else couleur_jaune
+func appliquer_couleur_pistiles():
+	 #Choisir la couleur selon le boolean
+	var couleur = couleur_verte if pistile_doit_etre_vert else couleur_jaune
 	
-	# Appliquer à tous les pistiles la couleur 
-	#for pistile in pistiles:
-	#	if pistile:
-			#var mat = StandardMaterial3D.new()
-			#mat.albedo_color = couleur
-			#pistile.set_surface_override_material(0, mat)
+	 #Appliquer à tous les pistiles la couleur 
+	for pistile in pistiles:
+		if pistile:
+			var mat = StandardMaterial3D.new()
+			mat.albedo_color = couleur
+			pistile.set_surface_override_material(0, mat)
 
 # Cas 1 deuxiéme Proposition : pour que les pétales tombe chaque abeile posé sur la fleur fiat changer de couleur du jaune au vert que quelle que pisitile
 # Si contact avec abeille 
@@ -90,19 +89,28 @@ func _process(delta):
 # si 3 contact d'abeille alors perte des pétales 
 		
 		
+#Version 2 changement couleur : change couleur 4 pistilles
+#func appliquer_couleur_pistiles():
+#	var couleur = couleur_verte if pistile_doit_etre_vert else couleur_jaune
+#	var numpistil = min(indexTabPistile +4, pistiles.size())
+#	for i in range(indexTabPistile,numpistil):
+#		var pistile=pistiles[i]
+#		if pistile:
+#			var mat = StandardMaterial3D.new()
+#			mat.albedo_color = couleur
+#			pistile.set_surface_override_material(0, mat)
+#	indexTabPistile = numpistil
+	
+#Condiiton pour changement de couleur 
+# si contact bodyentered avec abeille sur fleur
+#Alors pistile_doit_etre_vert = true
+#get_tree().get_nodes_in_group("abeilles")
 
-func appliquer_couleur_pistiles():
-	var couleur = couleur_verte if pistile_doit_etre_vert else couleur_jaune
-	var numpistil = min(indexTabPistile +4, pistiles.size())
-	for i in range(indexTabPistile,numpistil):
-		var pistile=pistiles[i]
-		if pistile:
-			var mat = StandardMaterial3D.new()
-			mat.albedo_color = couleur
-			pistile.set_surface_override_material(0, mat)
-	indexTabPistile = numpistil
-	
-	
+func _detection_abeille(body):
+	if body.is_in_group("abeilles"):
+		pistile_doit_etre_vert = true 
+		appliquer_couleur_pistiles()
+		
 	
 
 func supprimer_petales():
