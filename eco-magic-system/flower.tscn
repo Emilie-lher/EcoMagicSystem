@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddxrgnagef5g8"]
+[gd_scene load_steps=9 format=3 uid="uid://d3rm5syjsjesj"]
 
 [ext_resource type="Script" uid="uid://ry4uwmoumfwu" path="res://flower.gd" id="1_p547k"]
 
@@ -143,3 +143,5 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneDetection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.321, 0.244)
 shape = SubResource("SphereShape3D_p547k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
