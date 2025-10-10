@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://gjcdrs5sob0j"]
+
+[ext_resource type="Script" uid="uid://dyukub81yor1a" path="res://hive.gd" id="1_emd1k"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sk5o5"]
+
+[node name="Hive" type="StaticBody3D"]
+script = ExtResource("1_emd1k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_sk5o5")
+metadata/_edit_lock_ = true

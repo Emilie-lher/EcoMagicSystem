@@ -2,9 +2,10 @@ extends Node3D
 
 @onready var bee_scene: PackedScene = preload("res://beez.tscn")
 @onready var flower_scene: PackedScene = preload("res://flower.tscn")
+@onready var hive_scene: PackedScene = preload("res://hive.tscn")
 
-@export var bee_count: int = 1
-@export var start_flower_count: int = 4
+@export var bee_count: int = 4
+@export var start_flower_count: int = 1
 @export var respawn_delay: float = 1.0
 
 @export var terrain_min: Vector3 = Vector3(-10, 0, -10)
@@ -13,7 +14,13 @@ extends Node3D
 var tracked_flowers: Array = []
 
 func _ready():
-	_spawn_bees()
+	var hive_instance = hive_scene.instantiate()
+	hive_instance.position = Vector3(19, 3, 9)
+	
+	# Ajouter la ruche dans la scène Ground
+	add_child(hive_instance)
+	
+	_spawn_bees(hive_instance)
 	_spawn_initial_flowers()
 
 	var timer = Timer.new()
@@ -26,11 +33,12 @@ func _ready():
 # --------------------------
 #  Création des abeilles
 # --------------------------
-func _spawn_bees():
+func _spawn_bees(hive: Node3D):
 	for i in range(bee_count):
 		var bee = bee_scene.instantiate()
 		add_child(bee)
-		bee.global_transform.origin = _random_position()
+		bee.global_position = hive.global_position + Vector3(0, 0.5, 0)
+		bee.ruche = hive
 
 
 # --------------------------

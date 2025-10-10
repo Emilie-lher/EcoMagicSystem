@@ -106,6 +106,8 @@ func _detection_abeille(body):
 	if body.is_in_group("abeilles"):
 		pistile_doit_etre_vert = true 
 		appliquer_couleur_pistiles()
+	if body.has_method("ajouter_fleur_visitee"):
+			body.ajouter_fleur_visitee(self)
 
 
 # Version 2 changement couleur : change couleur 4 pistilles
