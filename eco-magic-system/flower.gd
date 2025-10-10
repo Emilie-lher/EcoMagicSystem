@@ -9,6 +9,7 @@ extends StaticBody3D
 	$Pistile9, $Pistile10, $Pistile11, $Pistile12
 ]
 
+var mort = false
 # Couleur du pistille (true = vert, false = jaune)
 var pistile_doit_etre_vert = false
 
@@ -71,7 +72,9 @@ func _process(delta):
 		
 		# Supprimer après 5 secondes
 		if temps_chute >= 0.15:
+			mort = true
 			supprimer_petales()
+			
 			
 
 func appliquer_couleur_pistiles():
@@ -133,7 +136,10 @@ func supprimer_petales():
 		if petale and is_instance_valid(petale):
 			petale.queue_free()
 	petales_supprimes = true
-	fanee = true
+	if mort:
+		fanee = false
+	else:
+		fanee = true
 
 	# Empêcher toute nouvelle détection
 	if $ZoneDetection:
