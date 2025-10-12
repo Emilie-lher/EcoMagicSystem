@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://du3ux7otc265k"]
+
+[ext_resource type="ArrayMesh" path="res://stage/trunk_deco.res" id="1_nnvrw"]
+[ext_resource type="ArrayMesh" path="res://stage/tree_top.res" id="2_gvmkm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2g23"]
+albedo_color = Color(0.47584146, 0.36358032, 0.20356035, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44ud8"]
+albedo_color = Color(0.26820573, 0.47709924, 0.070501335, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ind6k"]
+size = Vector3(2.2113647, 3.5375977, 2.3012695)
+
+[node name="Tree" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5757535, 0)
+mesh = ExtResource("1_nnvrw")
+surface_material_override/0 = SubResource("StandardMaterial3D_d2g23")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4130566, 0)
+mesh = ExtResource("2_gvmkm")
+surface_material_override/0 = SubResource("StandardMaterial3D_44ud8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009429932, 2.6054716, -0.08618164)
+shape = SubResource("BoxShape3D_ind6k")

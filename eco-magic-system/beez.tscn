@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c46yd04jwgh78"]
+[gd_scene load_steps=12 format=3 uid="uid://c46yd04jwgh78"]
 
 [ext_resource type="Script" uid="uid://dwu3qmnbt7vco" path="res://beez.gd" id="1_6ksu4"]
 
@@ -29,10 +29,12 @@ albedo_color = Color(0.038397167, 0.038397167, 0.03839716, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_gqtt7"]
 material = SubResource("StandardMaterial3D_5p0be")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ksu4"]
+size = Vector3(1, 1, 1.1401367)
+
 [node name="Beez" type="RigidBody3D"]
 contact_monitor = true
 script = ExtResource("1_6ksu4")
-speed = null
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.75672555, -0.003374517)
@@ -72,3 +74,10 @@ mesh = SubResource("BoxMesh_gqtt7")
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.08252725, 0.7787175, -0.5832184)
 mesh = SubResource("BoxMesh_gqtt7")
 skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04137671, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77960837, -0.07006836)
+shape = SubResource("BoxShape3D_6ksu4")
