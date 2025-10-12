@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@export var speed: float = 4.0
+@export var speed: float = 6.0
 @export var ruche: Node3D
 
 var target: Node3D = null
@@ -20,6 +20,12 @@ func _ready():
 	# Commencer juste au-dessus de la ruche si elle est assignée
 	if ruche:
 		global_position = ruche.global_position + Vector3(0, 1.5, 0)
+		
+		
+	# Connecter la détection de collision
+	var area = $Area3D
+	if area:
+		area.body_entered.connect(_on_body_entered)
 	
 	change_target()
 
@@ -76,15 +82,14 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# On combine cette force d’évitement à la direction principale
 	var direction: Vector3 = (to_target.normalized() + avoidance_force * 0.5).normalized()
 	state.linear_velocity = direction * speed
-
-
+	
 
 func ajouter_fleur_visitee(fleur: Node3D):
 	if fleur not in fleurs_visitees:
 		fleurs_visitees.append(fleur)
 		nombre_butins += 1
 		temps_depuis_derniere_fleur = 0.0
-		print("🐝 Abeille a butiné une fleur. Total :", nombre_butins)
+		print("Abeille a butiné une fleur. Total :", nombre_butins)
 
 	# Après 2 fleurs → retour à la ruche
 	if nombre_butins >= 2:
@@ -94,7 +99,7 @@ func ajouter_fleur_visitee(fleur: Node3D):
 
 
 func retourner_a_la_ruche():
-	print("🏠 Abeille retourne à la ruche")
+	print("Abeille retourne à la ruche avec nombre de butin =", nombre_butins)
 	target = ruche
 
 
@@ -102,11 +107,11 @@ func _rester_dans_ruche() -> void:
 	if en_pause:
 		return
 	en_pause = true
-	print("😴 Abeille se repose dans la ruche")
+	print("Abeille se repose dans la ruche")
 
 	await get_tree().create_timer(3.0).timeout
 
-	print("🌸 Abeille repart butiner")
+	print("Abeille repart butiner")
 	fleurs_visitees.clear()
 	nombre_butins = 0
 	en_pause = false
@@ -126,12 +131,12 @@ func change_target():
 	if fleurs_disponibles.size() > 0:
 		target = fleurs_disponibles.pick_random()
 	else:
-		print("⚠️ Aucune fleur disponible, retour à la ruche")
+		print("Aucune fleur disponible, retour à la ruche")
 		target = ruche
 
 func _butiner_fleur(fleur: Node3D) -> void:
 	en_pause_sur_fleur = true
-	print("🐝 Butinage de la fleur...")
+	print("Butinage de la fleur...")
 
 	# Attendre 1 à 2 secondes aléatoirement
 	var duree = randf_range(1.0, 2.0)
@@ -143,5 +148,22 @@ func _butiner_fleur(fleur: Node3D) -> void:
 	en_pause_sur_fleur = false
 	
 func _mourir():
-	print("💀 Abeille est morte faute de fleurs !")
+	print("Abeille est morte faute de fleurs !")
 	queue_free()  # supprime l'abeille de la scène
+	
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("abeilles"):
+		# On récupère la position actuelle
+		var pos = global_transform.origin
+		pos.x += 0.05
+		
+		# On applique la nouvelle position
+		global_transform.origin = pos
+		
+		# On stoppe la vitesse pour éviter que l'abeille courante soit propulsée
+		linear_velocity = Vector3.ZERO
+		angular_velocity = Vector3.ZERO
+		if(nombre_butins >= 2):
+			retourner_a_la_ruche()
+		else:
+			change_target()
