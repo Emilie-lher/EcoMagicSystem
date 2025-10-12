@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://nnvdwvk0kja2"]
-
-[ext_resource type="Texture2D" uid="uid://bae3ntkhlgmn7" path="res://ressources/bark.jpg" id="1_wdcra"]
-
-[resource]
-cull_mode = 1
-albedo_texture = ExtResource("1_wdcra")
-normal_enabled = true
-normal_scale = -1.16
