@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://gjcdrs5sob0j"]
+[gd_scene load_steps=5 format=3 uid="uid://gjcdrs5sob0j"]
 
-[ext_resource type="Script" uid="uid://dyukub81yor1a" path="res://hive.gd" id="1_emd1k"]
+[ext_resource type="Script" uid="uid://bsvdqcpfq8uvd" path="res://hive.gd" id="1_emd1k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emd1k"]
+albedo_color = Color(0.5878255, 0.53616583, 0.15896341, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sk5o5"]
+material = SubResource("StandardMaterial3D_emd1k")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emd1k"]
 
 [node name="Hive" type="StaticBody3D"]
 script = ExtResource("1_emd1k")
@@ -10,3 +16,6 @@ script = ExtResource("1_emd1k")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_sk5o5")
 metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_emd1k")

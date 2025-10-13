@@ -37,7 +37,7 @@ func _spawn_bees(hive: Node3D):
 	for i in range(bee_count):
 		var bee = bee_scene.instantiate()
 		add_child(bee)
-		bee.global_position = hive.global_position + Vector3(0, 0.5, 0)
+		bee.global_position = hive.global_position + Vector3((0+bee_count), 0.5, 0)
 		bee.ruche = hive
 
 
