@@ -4,7 +4,7 @@
 This Godot 4 project simulates the natural process of pollination through autonomous interactions between bees, flowers, and a hive.
 Each bee is controlled by a simple physics-based script, but together they exhibit emergent collective behavior — flying between flowers, avoiding collisions, collecting pollen, and returning to the hive.
 
-The project demonstrates how local rules and minimal AI can create lifelike and dynamic environmental behavior.
+The project demonstrates how local rules and real pollination ecology can create lifelike and dynamic environmental behavior.
 
 # Core Concepts
 ## Bees (RigidBody3D)
@@ -51,8 +51,6 @@ Bees distribute pollen and maintain plant reproduction.
 The hive acts as a regulatory center for bee activity.
 
 If pollination decreases, the ecosystem becomes unstable, showing how life balance depends on interaction between species.
-
-This project was inspired by real pollination ecology.
 
 
 ## Here you can see 10 beezs with 200 flowers
